@@ -1,13 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func main()  {
 	//exam()
 	//fmt.Println(Triple(5))
 	//exam1()
-	exam2()
-
+	//exam2()
+    //exam3()
+	//exam4()
+	exam3()
 }
 
 func exam()  {
@@ -72,4 +77,30 @@ func exam2()  {
 			}(i)
 		}
 	}()
+}
+
+func exam3()  {
+	defer func() {
+		fmt.Println("正常退出")
+		panic("恐慌!")
+	}()
+	fmt.Println("嗨")
+	defer func() {
+		v:=recover()
+		fmt.Println("恐慌被恢复了：",v)
+	}()
+	panic("拜拜!")
+	fmt.Println("执行不到这里")
+}
+
+func exam4()  {
+	fmt.Println("hi")
+	go func() {
+		time.Sleep(time.Second)
+		panic(123)
+	}()
+
+	for  {
+		time.Sleep(time.Second)
+	}
 }
