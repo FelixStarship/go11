@@ -44,7 +44,7 @@ func parse(sql string) (*ast.StmtNode, error) {
 }
 
 func main() {
-	astNode, err := parse("delete from")
+	astNode, err := parse("delete from a")
 	if err != nil {
 		fmt.Printf("parse error: %v\n", err.Error())
 		return
