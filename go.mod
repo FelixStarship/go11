@@ -2,7 +2,10 @@ module github.com/FelixStarship/go11
 
 go 1.17
 
-require github.com/pingcap/tidb/parser v0.0.0-20220726061910-1b848f40e2ee
+require (
+	github.com/google/wire v0.5.0
+	github.com/pingcap/tidb/parser v0.0.0-20220726061910-1b848f40e2ee
+)
 
 require (
 	github.com/cznic/mathutil v0.0.0-20181122101859-297441e03548 // indirect
