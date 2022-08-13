@@ -17,3 +17,6 @@ SQL_DATABASE=temporal_visibility ./temporal-sql-tool setup-schema -v 0.0
 SQL_DATABASE=temporal_visibility ./temporal-sql-tool update -schema-dir schema/mysql/v57/visibility/versioned
 ```
 
+```text
+tctl --ns starship-dev namespace register
+```

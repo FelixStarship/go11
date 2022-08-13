@@ -64,6 +64,19 @@ customized_db:"",
     
     
 # sql 审核表
+   
+  - sql审核表
+    id
+    sql发布表主键id
+    发布说明
+    审核状态
+    驳回意见
+    
+
+  
+
+
+
 
 ```sql
 
@@ -119,5 +132,17 @@ CREATE TABLE IF NOT EXISTS `sql_file_publish` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='sql发布关联文件表';
 
+
+
+CREATE TABLE IF NOT EXISTS `sql_audit` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `sql_publish_id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'sql发布表主键id',
+    `reject` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '驳回意见',
+    `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录创建时间',
+    `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '记录更新时间',
+    `created_by` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '记录创建人',
+    `modified_by` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '记录更新人',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='sql审核表';
 
 ```  
