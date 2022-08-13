@@ -9,7 +9,7 @@ import (
 
 func job() error {
 	ctx, _ := context.WithTimeout(context.Background(), time.Second*1)
-	done := make(chan struct{}, 1)
+	done := make(chan struct{})
 	go func() {
 		time.Sleep(time.Millisecond * 2000)
 		done <- struct{}{}
