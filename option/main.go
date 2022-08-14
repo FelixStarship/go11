@@ -59,5 +59,4 @@ func main() {
 		fmt.Printf("NewUser: err:%v", err)
 	}
 	fmt.Println(user)
-
 }

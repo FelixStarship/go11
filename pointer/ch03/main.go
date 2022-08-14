@@ -36,4 +36,10 @@ func main() {
 	gitLogin1.Project[0].Name = str1
 	fmt.Println(gitLogin.Project[0].Name)
 	fmt.Println(gitLogin1.Project[0].Name)
+
+	for _, item := range gitLogin.Project {
+		item.Name = "hxz"
+		fmt.Println(item.Name)
+	}
+	fmt.Println(gitLogin.Project)
 }
