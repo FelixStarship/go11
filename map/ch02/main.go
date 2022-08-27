@@ -11,6 +11,19 @@ func main() {
 
 	//子切片造成暂时性的内存泄露
 	fmt.Println(len(f()), cap(f()))
+
+	var z = make([]int, 3, 5)
+
+	var _ = (*[3]int)(z)
+
+	//切片未初始化
+	var x []int
+	var m map[string]int
+	fmt.Println(x == nil)
+	fmt.Println(m == nil)
+	x[0] = 1
+	fmt.Println(x)
+
 }
 
 func f() []int {
