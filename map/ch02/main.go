@@ -18,9 +18,10 @@ func main() {
 
 	//切片未初始化
 	var x []int
-	var m map[string]int
+	m := map[string]int{}
 	fmt.Println(x == nil)
 	fmt.Println(m == nil)
+	m["1"] = 1
 	x[0] = 1
 	fmt.Println(x)
 
