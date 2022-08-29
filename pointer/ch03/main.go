@@ -39,6 +39,7 @@ func main() {
 
 	for _, item := range gitLogin.Project {
 		item.Name = "hxz"
+		gitLogin.Project = append(gitLogin.Project, item)
 		fmt.Println(item.Name)
 	}
 	fmt.Println(gitLogin.Project)
