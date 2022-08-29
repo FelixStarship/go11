@@ -25,7 +25,7 @@ func cancelFunc(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	ch := make(chan struct{}, 1)
-	ch <- struct{}{}
+	<-ch
 	//http.HandleFunc("/", defaultFunc)
 	//http.HandleFunc("/cancel", cancelFunc)
 	//if err := http.ListenAndServe(":8081", nil); err != nil {
