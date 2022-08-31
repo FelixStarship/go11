@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/google/wire v0.5.0
 	github.com/pingcap/tidb/parser v0.0.0-20220726061910-1b848f40e2ee
+	github.com/pkg/errors v0.8.1
 	golang.org/x/sync v0.0.0-20190423024810-112230192c58
 )
 
