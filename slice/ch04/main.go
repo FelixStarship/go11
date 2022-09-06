@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"bytes"
 	"fmt"
 	"reflect"
@@ -36,5 +35,4 @@ func main() {
 	m2 := map[string]string{"two": "b", "one": "a"}
 	fmt.Println("m1 == m2:", reflect.DeepEqual(m1, m2))
 
-	bufio.NewScanner()
 }
