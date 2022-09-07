@@ -10,6 +10,11 @@ func main() {
 	// Functional Options编程模式
 	NewServer("127.0.0.1", 3306, WithProtocol("https"), WithTimeout(10))
 
+	//builder链式
+	s := &ServerBuilder{}
+	s.Create("127.0.0.1", 3306).
+		WithTimeout(10).
+		WithProtocol("http")
 }
 
 type Server struct {
@@ -44,4 +49,24 @@ func NewServer(addr string, port int, options ...func(*Server)) (*Server, error)
 		option(srv)
 	}
 	return srv, nil
+}
+
+type ServerBuilder struct {
+	Server
+}
+
+func (s *ServerBuilder) Create(addr string, port int) *ServerBuilder {
+	s.Addr = addr
+	s.Port = port
+	return s
+}
+
+func (s *ServerBuilder) WithProtocol(protocol string) *ServerBuilder {
+	s.Protocol = protocol
+	return s
+}
+
+func (s *ServerBuilder) WithTimeout(t time.Duration) *ServerBuilder {
+	s.Timeout = t
+	return s
 }
