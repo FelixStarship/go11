@@ -67,5 +67,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("NewUser:err:%+v", err)
 	}
+
 	fmt.Println(*user)
 }
