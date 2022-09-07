@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 type User struct {
 	ID     string
@@ -44,7 +47,7 @@ func NewUser(id string, name string, options ...func(*User)) (*User, error) {
 		Age:    0,
 		Email:  "",
 		Phone:  "",
-		Gender: "female",
+		Gender: "felix",
 	}
 	for _, option := range options {
 		option(&user)
@@ -54,9 +57,16 @@ func NewUser(id string, name string, options ...func(*User)) (*User, error) {
 }
 
 func main() {
-	user, err := NewUser("1", "Ada", WithAge(18), WithPhone("123456"))
+
+	user, err := NewUser("1", "Golang",
+		WithAge(27),
+		WithPhone("123456789"),
+		WithEmail("2793800263@qq.com"),
+		WithGender("Felix"))
+
 	if err != nil {
-		fmt.Printf("NewUser: err:%v", err)
+		log.Fatalf("NewUser:err:%+v", err)
 	}
-	fmt.Println(user)
+
+	fmt.Println(*user)
 }
