@@ -29,8 +29,8 @@ func ch02() {
 	}
 	go kickBall("张三")
 	go kickBall("李四")
-	go kickBall("王二麻子")
-	go kickBall("刘大")
+	//go kickBall("王二麻子")
+	//go kickBall("刘大")
 	ball <- "裁判"
 	var c chan bool //一个零值nil通道、通道阻塞
 	<-c

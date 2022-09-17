@@ -5,6 +5,7 @@
    - https://github.com/uber-go/guide
    - https://go.dev/doc/effective_go#blank_assign
    - https://github.com/bingohuang/effective-go-zh-en/blob/master/14_Concurrency.md
+   - go语言高级编程：https://github.com/chai2010/advanced-go-programming-book
 ## go中的error处理
 
 ## go中新手容易犯的50个错误
