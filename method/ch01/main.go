@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Age int
 
 //方法、属主参数声明
@@ -44,5 +46,22 @@ func (b *Book) SetPages(pages int) {
 	b.pages = pages
 }
 func main() {
+	var a int
+	a = 1
+	fmt.Println(Age(a).LargerThan(10))
+
+	str := StringSet{}
+	str.Add("骄傲的少年1")
+	str.Add("骄傲的少年2")
+	str.Add("骄傲的少年3")
+	str.Add("骄傲的少年4")
+
+	//StringSet().Has()
+
+	fmt.Println(str)
+
+	fmt.Println(FilterFunc(func(in int) bool {
+		return in > 1
+	}).Filter(0))
 
 }
