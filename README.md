@@ -10,3 +10,7 @@
 
 ## go中新手容易犯的50个错误
    - https://blog.csdn.net/gezhonglei2007/article/details/52237582
+
+## kubernetes相关
+  - 调度器
+    - https://developer.volcengine.com/articles/7110972767125635102

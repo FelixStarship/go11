@@ -13,6 +13,7 @@ func main() {
 	//exam3()
 	//exam4()
 	exam3()
+
 }
 
 func exam() {

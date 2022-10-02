@@ -22,6 +22,7 @@ func (c Country) ToString() string {
 	return "Country=" + c.Name
 }
 
+//多态实现
 func PrintStr(p ...Stringable) {
 	for _, s := range p {
 		fmt.Println(s.ToString())
