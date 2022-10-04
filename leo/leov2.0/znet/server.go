@@ -2,7 +2,7 @@ package znet
 
 import (
 	"fmt"
-	"github.com/FelixStarship/go11/leo/leov1.0/ziface"
+	"github.com/FelixStarship/go11/leo/leov2.0/ziface"
 	"net"
 )
 
@@ -11,6 +11,7 @@ type Server struct {
 	IPVersion string
 	IP        string
 	Port      int
+	Route     ziface.IRoute
 }
 
 func (s *Server) Start() {
@@ -36,7 +37,7 @@ func (s *Server) Start() {
 				fmt.Println("Accept err", err)
 				continue
 			}
-			go NewConnection(conn, cid, CallbackToClient).Start()
+			go NewConnection(conn, cid, s.Route).Start()
 			cid++
 		}
 	}()
@@ -47,17 +48,12 @@ func (s *Server) Server() {
 	select {}
 }
 
-func (s Server) Stop() {
+func (s *Server) Stop() {
 	fmt.Println("[STOP] Leo server,name", s.Name)
 }
 
-func CallbackToClient(conn *net.TCPConn, data []byte, cnt int) error {
-	fmt.Println("[Conn Handle]  CallbackToClient ...")
-	if _, err := conn.Write(data[:cnt]); err != nil {
-		fmt.Println("write back buf err:", err)
-		return err
-	}
-	return nil
+func (s *Server) AddRoute(route ziface.IRoute) {
+	s.Route = route
 }
 
 func NewServer(name string) ziface.IServer {
