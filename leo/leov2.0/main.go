@@ -12,7 +12,7 @@ import (
 func main() {
 
 	go func() {
-		s := znet.NewServer("[Leo v1.0]")
+		s := znet.NewServer("Leo v2.0")
 
 		s.AddRoute(&PingRoute{})
 
