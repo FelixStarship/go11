@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net"
+	"runtime"
 	"testing"
 )
 
@@ -44,6 +45,8 @@ func TestDataPack(t *testing.T) {
 
 				}
 			}(conn)
+
+			fmt.Println(runtime.NumGoroutine())
 		}
 	}()
 
@@ -64,7 +67,7 @@ func TestDataPack(t *testing.T) {
 
 	msg2 := &Message{
 		ID:      1,
-		DataLen: 5,
+		DataLen: 10,
 		Data:    []byte{'h', 'e', 'l', 'l', 'o'},
 	}
 
