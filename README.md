@@ -15,5 +15,7 @@
 ## kubernetes相关
   - 调度器
     - https://developer.volcengine.com/articles/7110972767125635102
-
+    
+微信公众号（用于发布一些Go细节、常识和技巧）：
+![](https://github.com/FelixStarship/go11/blob/fleet-infra/gopher/%E6%89%93gopher.png)
     
