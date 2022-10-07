@@ -18,7 +18,7 @@
     - 提供其他模块之间的数据交互和通信的枢纽（其他模块通过 API Server 查询或修改数据，只有 API Server 才直接操作 etcd）
   - kube-apiserver 提供了 Kubernetes 的 REST API，实现了认证、授权、准入控制等安全校验功能，同时也负责集群状态的存储操作（通过 etcd）。
 
-    ![](kube-apiserver.png?raw=true)
+    ![](kube-apiserver.png)
   - rest api:
     `
     curl -v -H 'Content-Type: application/json' \
