@@ -17,12 +17,18 @@
     - 提供集群管理的 REST API 接口，包括认证授权、数据校验以及集群状态变更等
     - 提供其他模块之间的数据交互和通信的枢纽（其他模块通过 API Server 查询或修改数据，只有 API Server 才直接操作 etcd）
   - kube-apiserver 提供了 Kubernetes 的 REST API，实现了认证、授权、准入控制等安全校验功能，同时也负责集群状态的存储操作（通过 etcd）。
-
-    ![](kube-apiserver.png)
+  ![](kube-apiserver.png)
   - rest api:
     `
     curl -v -H 'Content-Type: application/json' \
     "http://localhost:${PORT}/api/v1/namespaces/default/pods/${POD}/status" >"${POD}-orig.json"
     `
+  - Tunnel Server
+    - 底层采用了HTTP进行传输，将TCP/UDP链接封装在HTTP隧道中，并且还使用了SSH对通信数据进行加密。
+    - Architecture
+    ![](chisel.png)
+
+
+
     https://kinvolk.io/blog/2019/02/abusing-kubernetes-api-server-proxying/
   
