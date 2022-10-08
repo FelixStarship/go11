@@ -191,9 +191,7 @@
            },
            })
       - agent基于backoff的心跳维护机制、保证代理链接的可用性
-    
     - Data flow
       ![](remotedialer-flow.png)
-    
-    https://kinvolk.io/blog/2019/02/abusing-kubernetes-api-server-proxying/
+      https://kinvolk.io/blog/2019/02/abusing-kubernetes-api-server-proxying/
   
