@@ -193,5 +193,51 @@
       - agent基于backoff的心跳维护机制、保证代理链接的可用性
     - Data flow
       ![](remotedialer-flow.png)
-      - https://kinvolk.io/blog/2019/02/abusing-kubernetes-api-server-proxying/
-  
+  - tower 应用
+    - 启动 proxy
+    `
+      ./bin/proxy --ca-cert=/root/certs/ca.crt --ca-key=/root/certs/ca.key --v=5 --kubeconfig=/root/.kube/k3s.yaml
+      I1008 19:29:33.540192    5357 options.go:46] CA set to "/root/certs/ca.crt".
+      I1008 19:29:33.540445    5357 options.go:47] CA key file set to "/root/certs/ca.key".
+      I1008 19:29:33.540473    5357 options.go:48] Host set to 0.0.0.0
+      I1008 19:29:33.540490    5357 options.go:49] Agent port set to 8080.
+      I1008 19:29:33.540503    5357 options.go:50] Kubeconfig set to "/root/.kube/k3s.yaml".
+      I1008 19:29:33.540513    5357 options.go:51] Leader election set to false
+      I1008 19:29:33.542759    5357 proxy.go:292] Listening on 0.0.0.0:8080...
+      I1008 19:29:40.071618    5357 proxy.go:133] New agent connection
+      I1008 19:29:40.071712    5357 proxy.go:141] Handshaking...
+      I1008 19:29:40.222967    5357 proxy.go:343]  is connecting from 43.142.137.98:34642
+      I1008 19:29:40.223129    5357 proxy.go:149] Verifying configuration
+      I1008 19:29:40.253403    5357 proxy.go:198] IssueCertAndKey for [127.0.0.1]
+      I1008 19:29:40.455966    5357 proxy_server.go:131] Proxy server local-test-kubernetes: starting http proxy on :6146, proxy address 127.0.0.1:6443
+      I1008 19:29:40.456099    5357 proxy.go:238] Connection established with local-test
+    `
+    - 启动 agent
+    `./bin/agent --name=local-test  --token=f6402697107e92f16457f00430e8e2dfb6580e22cea77e98f7eacd1a4458dbd7  --proxy-server=http://120.48.90.114:8080  --keepalive=10s  --kubernetes-service=kubernetes.default.svc:443  --v=5  --kubeconfig=/home/ubuntu/.kube/k3s.yaml
+      I1008 19:30:42.701993   13589 agent.go:201] Handshaking...
+      I1008 19:30:42.894385   13589 agent.go:213] Sending config
+      I1008 19:30:43.027009   13589 agent.go:229] Connected (Latency 132.595984ms)
+    `
+    - 验证 获取proxy生成的代理集群配置文件、从cr中获取
+      `
+      kubectl get nodes
+      NAME            STATUS   ROLES                  AGE    VERSION
+      vm-4-5-ubuntu   Ready    control-plane,master   118d   v1.23.6+k3s1
+      `
+      - watch list pod .....
+        `
+        root@ls-3mx933WO:~/.kube#  kubectl get all -A
+        NAMESPACE     NAME                                          READY   STATUS      RESTARTS      AGE
+        kube-system   pod/helm-install-traefik-crd-cqsnk            0/1     Completed   0             118d
+        kube-system   pod/helm-install-traefik-7gdgf                0/1     Completed   0             118d
+        kube-system   pod/svclb-traefik-j5jq5                       2/2     Running     6 (29m ago)   118d
+        kube-system   pod/traefik-df4ff85d6-95m2s                   1/1     Running     3 (29m ago)   118d
+        kube-system   pod/coredns-d76bd69b-4tmwz                    1/1     Running     3 (29m ago)   118d
+        kube-system   pod/local-path-provisioner-6c79684f77-skrtf   1/1     Running     6 (28m ago)   118d
+        kube-system   pod/metrics-server-7cd5fcb6b7-j62tc           1/1     Running     4 (28m ago)   118d
+        NAMESPACE     NAME                     TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
+        default       service/kubernetes       ClusterIP      10.43.0.1      <none>        443/TCP                      118d
+        kube-system   service/kube-dns         ClusterIP      10.43.0.10     <none>        53/UDP,53/TCP,9153/TCP       118d
+        kube-system   service/metrics-server   ClusterIP      10.43.152.90   <none>        443/TCP                      118d
+        kube-system   service/traefik          LoadBalancer   10.43.234.18   10.0.4.5      80:31519/TCP,443:30517/TCP   118d
+        `
