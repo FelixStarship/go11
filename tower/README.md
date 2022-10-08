@@ -155,6 +155,9 @@
         }
         close(agent.runningC)
         }  
-
+  - Tower代理模块依赖关系
+    - entity
+      ![](remotedialer.png)
+    
     https://kinvolk.io/blog/2019/02/abusing-kubernetes-api-server-proxying/
   
