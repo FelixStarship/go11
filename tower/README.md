@@ -27,7 +27,36 @@
     - 底层采用了HTTP进行传输，将TCP/UDP链接封装在HTTP隧道中，并且还使用了SSH对通信数据进行加密。
     - Architecture
     ![](chisel.png)
+  - Tower组成核心模块
+    - Tunnel Server
+    - Proxy代理模块、充当Kubernetes API Server代理的服务端
+      - k8sproxy.NewUpgradeAwareHandler
+      ``func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+        u := *req.URL
+        u.Host = s.host
+        u.Scheme = s.scheme
 
+    fmt.Printf("req.URL:%s\nreq.Body:%s\nreq.Header:%s\nreq.Host:%s\n", req.URL, req.Body, req.Header, req.Host)
+
+    if s.useBearerToken && len(s.bearerToken) > 0 {
+    req = utilnet.CloneRequest(req)
+    req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", s.bearerToken))
+    }
+
+    // we choose one httpClient randomly
+    rand.Seed(time.Now().UnixNano())
+    s.rwLock.RLock()
+    index := rand.Intn(len(s.httpClient))
+    klog.V(5).Infof("server %s current agent connection length %d, random slice index %d", s.name, len(s.httpClient), index)
+    httpProxy := k8sproxy.NewUpgradeAwareHandler(&u, s.httpClient[index].Transport, false, false, s)
+    s.rwLock.RUnlock()
+
+    httpProxy.ServeHTTP(w, req)
+
+}
+      `
+    - Agent模块应用在客户集群、对外暴露集群服务
+        
 
     https://kinvolk.io/blog/2019/02/abusing-kubernetes-api-server-proxying/
   
