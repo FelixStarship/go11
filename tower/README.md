@@ -31,7 +31,7 @@
     - Tunnel Server
     - Proxy代理模块、充当Kubernetes API Server代理的服务端
       - k8sproxy.NewUpgradeAwareHandler
-      ``func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+        `func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
         u := *req.URL
         u.Host = s.host
         u.Scheme = s.scheme
@@ -54,7 +54,7 @@
     httpProxy.ServeHTTP(w, req)
 
 }
-      `
+        `
     - Agent模块应用在客户集群、对外暴露集群服务
         
 
