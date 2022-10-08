@@ -158,6 +158,37 @@
   - Tower代理模块依赖关系
     - entity
       ![](remotedialer.png)
-    
+      - proxy服务端维护ws连接会话，用于代理转发客户端请求sessions会话map[string]*HTTPProxy
+      - 基于raft算法实现的leaderelection选举机制
+        ````
+        lock, err := resourcelock.New(resourcelock.LeasesResourceLock,
+				"kubesphere-system",
+				"tower",
+				kubernetesClient.CoreV1(),
+				kubernetesClient.CoordinationV1(),
+				resourcelock.ResourceLockConfig{
+					Identity: id,
+					EventRecorder: record.NewBroadcaster().NewRecorder(scheme.Scheme, v1.EventSource{
+						Component: "tower",
+					}),
+				})
+
+			if err != nil {
+				klog.Fatalf("error creating lock: %v", err)
+			}
+
+			leaderelection.RunOrDie(ctx, leaderelection.LeaderElectionConfig{
+				Lock:          lock,
+				LeaseDuration: options.LeaderElection.LeaseDuration,
+				RenewDeadline: options.LeaderElection.RenewDeadline,
+				RetryPeriod:   options.LeaderElection.RetryPeriod,
+				Callbacks: leaderelection.LeaderCallbacks{
+					OnStartedLeading: run,
+					OnStoppedLeading: func() {
+						klog.Errorf("leadership lost")
+						os.Exit(0)
+           },
+           },
+           })
     https://kinvolk.io/blog/2019/02/abusing-kubernetes-api-server-proxying/
   
