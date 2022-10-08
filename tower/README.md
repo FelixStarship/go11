@@ -195,7 +195,7 @@
       ![](remotedialer-flow.png)
   - tower 应用
     - 启动 proxy
-    `
+      ````
       ./bin/proxy --ca-cert=/root/certs/ca.crt --ca-key=/root/certs/ca.key --v=5 --kubeconfig=/root/.kube/k3s.yaml
       I1008 19:29:33.540192    5357 options.go:46] CA set to "/root/certs/ca.crt".
       I1008 19:29:33.540445    5357 options.go:47] CA key file set to "/root/certs/ca.key".
@@ -211,21 +211,22 @@
       I1008 19:29:40.253403    5357 proxy.go:198] IssueCertAndKey for [127.0.0.1]
       I1008 19:29:40.455966    5357 proxy_server.go:131] Proxy server local-test-kubernetes: starting http proxy on :6146, proxy address 127.0.0.1:6443
       I1008 19:29:40.456099    5357 proxy.go:238] Connection established with local-test
-    `
+    
     - 启动 agent
-    `./bin/agent --name=local-test  --token=f6402697107e92f16457f00430e8e2dfb6580e22cea77e98f7eacd1a4458dbd7  --proxy-server=http://120.48.90.114:8080  --keepalive=10s  --kubernetes-service=kubernetes.default.svc:443  --v=5  --kubeconfig=/home/ubuntu/.kube/k3s.yaml
+      ````
+      ./bin/agent --name=local-test  --token=f6402697107e92f16457f00430e8e2dfb6580e22cea77e98f7eacd1a4458dbd7  --proxy-server=http://120.48.90.114:8080  --keepalive=10s  --kubernetes-service=kubernetes.default.svc:443  --v=5  --kubeconfig=/home/ubuntu/.kube/k3s.yaml
       I1008 19:30:42.701993   13589 agent.go:201] Handshaking...
       I1008 19:30:42.894385   13589 agent.go:213] Sending config
       I1008 19:30:43.027009   13589 agent.go:229] Connected (Latency 132.595984ms)
-    `
+     
     - 验证 获取proxy生成的代理集群配置文件、从cr中获取
-      `
+      ````
       kubectl get nodes
       NAME            STATUS   ROLES                  AGE    VERSION
       vm-4-5-ubuntu   Ready    control-plane,master   118d   v1.23.6+k3s1
-      `
-      - watch list pod .....
-        `
+      
+      watch list pod .....
+        
         root@ls-3mx933WO:~/.kube#  kubectl get all -A
         NAMESPACE     NAME                                          READY   STATUS      RESTARTS      AGE
         kube-system   pod/helm-install-traefik-crd-cqsnk            0/1     Completed   0             118d
@@ -240,4 +241,4 @@
         kube-system   service/kube-dns         ClusterIP      10.43.0.10     <none>        53/UDP,53/TCP,9153/TCP       118d
         kube-system   service/metrics-server   ClusterIP      10.43.152.90   <none>        443/TCP                      118d
         kube-system   service/traefik          LoadBalancer   10.43.234.18   10.0.4.5      80:31519/TCP,443:30517/TCP   118d
-        `
+        
