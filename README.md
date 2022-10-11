@@ -15,3 +15,7 @@
   - 调度器
     - https://developer.volcengine.com/articles/7110972767125635102
   - https://jimmysong.io/kubernetes-handbook/develop/client-go-informer-sourcecode-analyse.html
+  - Apiserver-Network-Proxy
+    - https://open-cluster-management.io/getting-started/integration/cluster-proxy/
+    - ANP：https://github.com/kubernetes-sigs/apiserver-network-proxy
+     
