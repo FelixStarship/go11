@@ -1,3 +1,4 @@
+
 # go11
 1.重温go编程基本功、原理、技巧、设计方式
 ## go书集
@@ -14,9 +15,13 @@
 ## kubernetes相关
   - 调度器
     - https://developer.volcengine.com/articles/7110972767125635102
-  - https://jimmysong.io/kubernetes-handbook/develop/client-go-informer-sourcecode-analyse.html
-  - Apiserver-Network-Proxy
-    - https://open-cluster-management.io/getting-started/integration/cluster-proxy/
-    - ANP：https://github.com/kubernetes-sigs/apiserver-network-proxy
-    - Yurttunnel：https://openyurt.io/zh/docs/next/core-concepts/yurttunnel/
-     
+    - https://jimmysong.io/kubernetes-handbook/develop/client-go-informer-sourcecode-analyse.html
+    - Apiserver-Network-Proxy
+      - https://open-cluster-management.io/getting-started/integration/cluster-proxy/
+      - ANP：https://github.com/kubernetes-sigs/apiserver-network-proxy
+      - Yurttunnel：https://openyurt.io/zh/docs/next/core-concepts/yurttunnel/
+
+## 微信公众号（用于发布一些Go细节、常识和技巧）：
+![](gopher/%E6%89%93gopher.png?raw=true)
+    
+  

@@ -45,6 +45,11 @@ func (b Book) Pages() int {
 func (b *Book) SetPages(pages int) {
 	b.pages = pages
 }
+
+//func Book.Pages(b Book) int {
+//	return b.pages
+//}
+
 func main() {
 	var a int
 	a = 1
@@ -64,4 +69,10 @@ func main() {
 		return in > 1
 	}).Filter(0))
 
+	//显示调用
+	var book Book
+	(*Book).SetPages(&book, 985)
+	fmt.Println(Book.Pages(book))
+
+	book.SetPages(123)
 }
