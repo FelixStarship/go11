@@ -18,13 +18,12 @@ type Connection struct {
 }
 
 func NewConnection(conn *net.TCPConn, connID uint32, msgHandler ziface.IMsgHandle) ziface.IConnection {
-	c := &Connection{
+	return &Connection{
 		Conn:         conn,
 		ConnID:       connID,
 		ExitBuffChan: make(chan bool, 1),
 		MsgHandler:   msgHandler,
 	}
-	return c
 }
 
 func (c *Connection) StartReader() {
