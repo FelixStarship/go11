@@ -4,5 +4,5 @@ type IServer interface {
 	Start()
 	Stop()
 	Server()
-	AddRoute(route IRoute)
+	AddRoute(msgId uint32, route IRoute)
 }

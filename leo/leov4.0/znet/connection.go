@@ -2,6 +2,7 @@ package znet
 
 import (
 	"fmt"
+	"io"
 	"net"
 
 	"github.com/FelixStarship/go11/leo/leov4.0/ziface"
@@ -13,13 +14,15 @@ type Connection struct {
 	ConnID       uint32
 	isClosed     bool
 	ExitBuffChan chan bool
+	MsgHandler   ziface.IMsgHandle
 }
 
-func NewConnection(conn *net.TCPConn, connID uint32) ziface.IConnection {
+func NewConnection(conn *net.TCPConn, connID uint32, msgHandler ziface.IMsgHandle) ziface.IConnection {
 	c := &Connection{
 		Conn:         conn,
 		ConnID:       connID,
 		ExitBuffChan: make(chan bool, 1),
+		MsgHandler:   msgHandler,
 	}
 	return c
 }
@@ -28,23 +31,36 @@ func (c *Connection) StartReader() {
 	fmt.Println("Reader Goroutine is running ")
 	defer fmt.Println(c.RemoteAddr().String(), "conn reader exit！ ")
 	defer c.Stop()
+
 	for {
-		buf := make([]byte, 512)
-		_, err := c.Conn.Read(buf)
-		if err != nil {
-			fmt.Println("recv buf err:", err)
+		dp := NewDataPack()
+		headData := make([]byte, dp.GetHeadLen())
+		if _, err := io.ReadFull(c.GetTCPConnection(), headData); err != nil {
 			c.ExitBuffChan <- true
 			continue
 		}
 
-		go func(req ziface.IRequest) {
-			c.Route.PreHandler(req)
-			c.Route.Handler(req)
-			c.Route.PostHandler(req)
-		}(&Request{
+		msg, err := dp.UnPack(headData)
+		if err != nil {
+			c.ExitBuffChan <- true
+			continue
+		}
+
+		var data []byte
+		if msg.GetDataLen() > 0 {
+			data := make([]byte, msg.GetDataLen())
+			if _, err := io.ReadFull(c.GetTCPConnection(), data); err != nil {
+				c.ExitBuffChan <- true
+				continue
+			}
+		}
+		msg.SetData(data)
+
+		req := &Request{
 			conn: c,
-			data: buf,
-		})
+			msg:  msg,
+		}
+		go c.MsgHandler.DoMsgHandler(req)
 	}
 }
 func (c *Connection) Start() {
