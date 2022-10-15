@@ -11,7 +11,7 @@ type MsgHandler struct {
 
 func NewMsgHandle() *MsgHandler {
 	return &MsgHandler{
-		Apis: map[uint32]ziface.IRoute{},
+		Apis: make(map[uint32]ziface.IRoute),
 	}
 }
 

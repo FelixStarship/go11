@@ -1,6 +1,6 @@
 package znet
 
-import "github.com/FelixStarship/go11/leo/leov2.0/ziface"
+import "github.com/FelixStarship/go11/leo/leov4.0/ziface"
 
 type BaseRoute struct{}
 

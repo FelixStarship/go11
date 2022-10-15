@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"log"
 	"net"
 	"time"
 
-	"github.com/FelixStarship/go11/leo/leov2.0/ziface"
-	"github.com/FelixStarship/go11/leo/leov2.0/znet"
+	"github.com/FelixStarship/go11/leo/leov4.0/ziface"
+	"github.com/FelixStarship/go11/leo/leov4.0/znet"
 )
 
 func main() {
@@ -14,7 +16,7 @@ func main() {
 	go func() {
 		s := znet.NewServer("Leo v4.0")
 
-		s.AddRoute(&PingRoute{})
+		s.AddRoute(0, &PingRoute{})
 
 		s.Server()
 	}()
@@ -28,18 +30,36 @@ func main() {
 	}
 
 	for {
-		_, err := conn.Write([]byte("bibi"))
+		dp := znet.NewDataPack()
+		msg, _ := dp.Pack(znet.NewMsgPackage(0, []byte("Leo v0.4 client test")))
+		_, err := conn.Write(msg)
 		if err != nil {
-			fmt.Println("write error err", err)
-			return
+			log.Fatalf("write error,err:%+v", err)
 		}
-		buf := make([]byte, 512)
-		cnt, err := conn.Read(buf)
+
+		headData := make([]byte, dp.GetHeadLen())
+		_, err = io.ReadFull(conn, headData)
 		if err != nil {
-			fmt.Println("read buf error")
-			return
+			log.Fatalf("read head error:%+v", err)
 		}
-		fmt.Printf("server call back:%s,cnt:%d\n", buf, cnt)
+
+		msgHead, err := dp.UnPack(headData)
+		if err != nil {
+			log.Fatalf("server unpack error:%+v", err)
+		}
+
+		if msgHead.GetDataLen() > 0 {
+			msg := msgHead.(*znet.Message)
+			msg.Data = make([]byte, msg.GetDataLen())
+
+			_, err = io.ReadFull(conn, msg.Data)
+			if err != nil {
+				log.Fatalf("server unpack data error:%+v", err)
+			}
+
+			fmt.Println("==> Recv Msg:ID=", msg.ID, " ,len=", msg.DataLen, ",data=", string(msg.Data))
+		}
+
 		time.Sleep(time.Second * 1)
 	}
 
@@ -50,7 +70,9 @@ type PingRoute struct {
 }
 
 func (p *PingRoute) PreHandler(req ziface.IRequest) {
-	_, err := req.GetConnection().GetTCPConnection().Write([]byte("before ping..."))
+	//读取客户端数据、在响应给客户端
+	fmt.Println("recv from client:msgId=", req.GetMsgID(), "msgData=", string(req.GetData()))
+	err := req.GetConnection().SendMsg(0, []byte("ping....ping...."))
 	if err != nil {
 		fmt.Println("ping call err", err)
 	}

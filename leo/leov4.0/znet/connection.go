@@ -45,9 +45,8 @@ func (c *Connection) StartReader() {
 			continue
 		}
 
-		var data []byte
+		data := make([]byte, msg.GetDataLen())
 		if msg.GetDataLen() > 0 {
-			data := make([]byte, msg.GetDataLen())
 			if _, err := io.ReadFull(c.GetTCPConnection(), data); err != nil {
 				c.ExitBuffChan <- true
 				continue
