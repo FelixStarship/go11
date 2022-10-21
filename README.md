@@ -16,8 +16,13 @@
 ## kubernetes相关
   - 调度器
     - https://developer.volcengine.com/articles/7110972767125635102
+    - https://github.com/kubernetes/community/blob/fce5c5dd577e636c3ad1c0b215ca78c0f9c6feae/contributors/devel/sig-scheduling/scheduling_code_hierarchy_overview.md
+    - https://rocdu.gitbook.io/cloud-native-devops/develop/self-develop-scheduler
+  
+  - informer
     - https://jimmysong.io/kubernetes-handbook/develop/client-go-informer-sourcecode-analyse.html
     
+
   - Apiserver-Network-Proxy
       - https://open-cluster-management.io/getting-started/integration/cluster-proxy/
       - ANP：https://github.com/kubernetes-sigs/apiserver-network-proxy
