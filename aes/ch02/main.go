@@ -1,10 +1,5 @@
 package main
 
-import (
-	"crypto/md5"
-	"crypto/sha1"
-)
-
 func converArr(array [20]byte) []byte {
 	s := []byte{}
 	for _, elem := range array {
@@ -15,13 +10,13 @@ func converArr(array [20]byte) []byte {
 
 func main() {
 
-	md5 := md5.Sum([]byte("5d4b7a49339eb3191688116224871548Mysoft!@#$%^&"))
-
-	sha1 := sha1.Sum([]byte("5d4b7a49339eb3191688116224871548Mysoft!@#$%^&"))
-
-	key := GetByteArray(converArr(sha1), 32)
-
-	iv := converArr(md5)
+	//md5 := md5.Sum([]byte("5d4b7a49339eb3191688116224871548Mysoft!@#$%^&"))
+	//
+	//sha1 := sha1.Sum([]byte("5d4b7a49339eb3191688116224871548Mysoft!@#$%^&"))
+	//
+	//key := GetByteArray(converArr(sha1), 32)
+	//
+	//iv := converArr(md5)
 
 	//fmt.Println(realKeys)
 	//
