@@ -19,7 +19,9 @@ func main() {
 
 	iv := converArr2(md5)
 
-	fmt.Println(NewAESCrypt(key, iv, AESModeCBC).Encrypt("{\"user_code\":\"huxz011111111111111111\"}"))
+	result, _ := NewAESCrypt(key, iv, AESModeCBC).Encrypt("{\"user_code\":\"huxz011111111111111111\"}")
+
+	fmt.Println(result)
 
 }
 
@@ -51,8 +53,6 @@ func (a AESCrypt) Encrypt(value string) (result string, err error) {
 	}
 
 	result = base64.StdEncoding.EncodeToString(encrypted)
-
-	fmt.Println(result)
 
 	return
 }
