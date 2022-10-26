@@ -19,7 +19,7 @@ func main() {
 
 	iv := converArr2(md5)
 
-	result, _ := NewAESCrypt(key, iv, AESModeCBC).Encrypt("{\"user_code\":\"huxz011111111111111111\"}")
+	result, _ := NewAESCrypt(key, iv, AESModeCBC).Encrypt("{\"user_code\":\"Admin\"}")
 
 	fmt.Println(result)
 
