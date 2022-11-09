@@ -27,7 +27,7 @@ func main() {
 
 	for n := range gen(ctx) {
 		fmt.Println(n)
-		if n == 2 {
+		if n == 10 {
 			break
 		}
 	}
