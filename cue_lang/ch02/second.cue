@@ -39,3 +39,7 @@ j:null
 	}
 }
 
+
+hello:"world"
+//(hello): "world2"
+"my-\(hello)":"world3"
