@@ -10,9 +10,9 @@ func converArr(array [20]byte) []byte {
 
 func main() {
 
-	//md5 := md5.Sum([]byte("5d4b7a49339eb3191688116224871548Mysoft!@#$%^&"))
+	//md5 := md5.Sum([]byte("5d4b7a49339eb3191688116224871548"))
 	//
-	//sha1 := sha1.Sum([]byte("5d4b7a49339eb3191688116224871548Mysoft!@#$%^&"))
+	//sha1 := sha1.Sum([]byte("5d4b7a49339eb3191688116224871548"))
 	//
 	//key := GetByteArray(converArr(sha1), 32)
 	//
