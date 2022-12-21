@@ -2,7 +2,46 @@
 <module type="WEB_MODULE" version="4">
   <component name="Go" enabled="true" />
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/tower" />
+      <excludeFolder url="file://$MODULE_DIR$/entry" />
+      <excludeFolder url="file://$MODULE_DIR$/error" />
+      <excludeFolder url="file://$MODULE_DIR$/cue_lang" />
+      <excludeFolder url="file://$MODULE_DIR$/func" />
+      <excludeFolder url="file://$MODULE_DIR$/leo/leov1.0" />
+      <excludeFolder url="file://$MODULE_DIR$/leo/leov2.0" />
+      <excludeFolder url="file://$MODULE_DIR$/interface" />
+      <excludeFolder url="file://$MODULE_DIR$/leo/leov4.0" />
+      <excludeFolder url="file://$MODULE_DIR$/iota" />
+      <excludeFolder url="file://$MODULE_DIR$/gopher" />
+      <excludeFolder url="file://$MODULE_DIR$/context_features" />
+      <excludeFolder url="file://$MODULE_DIR$/defer" />
+      <excludeFolder url="file://$MODULE_DIR$/leo/leov3.0" />
+      <excludeFolder url="file://$MODULE_DIR$/hash" />
+      <excludeFolder url="file://$MODULE_DIR$/ddl" />
+      <excludeFolder url="file://$MODULE_DIR$/http_chunked" />
+      <excludeFolder url="file://$MODULE_DIR$/array" />
+      <excludeFolder url="file://$MODULE_DIR$/concurrent" />
+      <excludeFolder url="file://$MODULE_DIR$/aes" />
+      <excludeFolder url="file://$MODULE_DIR$/map" />
+      <excludeFolder url="file://$MODULE_DIR$/mapreduce" />
+      <excludeFolder url="file://$MODULE_DIR$/method" />
+      <excludeFolder url="file://$MODULE_DIR$/mysqlsyntax" />
+      <excludeFolder url="file://$MODULE_DIR$/openyurt" />
+      <excludeFolder url="file://$MODULE_DIR$/option" />
+      <excludeFolder url="file://$MODULE_DIR$/pointer" />
+      <excludeFolder url="file://$MODULE_DIR$/slice" />
+      <excludeFolder url="file://$MODULE_DIR$/sql" />
+      <excludeFolder url="file://$MODULE_DIR$/str" />
+      <excludeFolder url="file://$MODULE_DIR$/struct" />
+      <excludeFolder url="file://$MODULE_DIR$/switch" />
+      <excludeFolder url="file://$MODULE_DIR$/sync_mutex" />
+      <excludeFolder url="file://$MODULE_DIR$/tcp_epoller" />
+      <excludeFolder url="file://$MODULE_DIR$/tcp_proxy" />
+      <excludeFolder url="file://$MODULE_DIR$/tcpconn" />
+      <excludeFolder url="file://$MODULE_DIR$/temporal" />
+      <excludeFolder url="file://$MODULE_DIR$/type_assert" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
