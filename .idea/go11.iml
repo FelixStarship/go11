@@ -37,7 +37,6 @@
       <excludeFolder url="file://$MODULE_DIR$/switch" />
       <excludeFolder url="file://$MODULE_DIR$/sync_mutex" />
       <excludeFolder url="file://$MODULE_DIR$/tcp_epoller" />
-      <excludeFolder url="file://$MODULE_DIR$/tcp_proxy" />
       <excludeFolder url="file://$MODULE_DIR$/tcpconn" />
       <excludeFolder url="file://$MODULE_DIR$/temporal" />
       <excludeFolder url="file://$MODULE_DIR$/type_assert" />

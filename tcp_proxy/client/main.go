@@ -1,9 +1,10 @@
 package main
 
 import (
-	"io"
+	"fmt"
+	"log"
 	"net"
-	"os"
+	"time"
 )
 
 func main() {
@@ -12,7 +13,20 @@ func main() {
 		// Handle error
 	}
 
-	conn.Write([]byte("testettetete"))
+	for {
 
-	io.Copy(os.Stdout, conn)
+		time.Sleep(time.Second * 10)
+
+		conn.Write([]byte("tcp"))
+		readbuf := make([]byte, 512)
+		dataLen, err := conn.Read(readbuf)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if dataLen > 0 {
+			fmt.Println(string(readbuf))
+		}
+	}
+
 }

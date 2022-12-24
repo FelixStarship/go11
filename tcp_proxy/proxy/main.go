@@ -1,7 +1,8 @@
 package main
 
 import (
-	"io"
+	"fmt"
+	"log"
 	"net"
 )
 
@@ -13,20 +14,33 @@ func main() {
 	}
 
 	// Continually accept incoming connections
+	count := 0
 	for {
 		conn, err := ln.Accept()
 		if err != nil {
 			// Handle error
 		}
 
-		// Create outgoing connection
-		out, err := net.Dial("tcp", "www.example.com:80")
-		if err != nil {
-			// Handle error
-		}
+		count++
+		fmt.Println("connection ID:", count)
 
-		// Use goroutines to proxy data between connections
-		go io.Copy(out, conn)
-		go io.Copy(conn, out)
+		go func(cid int) {
+			for {
+				readbuf := make([]byte, 512)
+
+				dataLen, err := conn.Read(readbuf)
+
+				if err != nil {
+					log.Fatal(err)
+				}
+
+				if dataLen > 0 {
+					fmt.Println("读客户端消息:", string(readbuf), "客户端连接ID:", cid)
+				}
+
+				conn.Write([]byte("写入消息!"))
+
+			}
+		}(count)
 	}
 }
