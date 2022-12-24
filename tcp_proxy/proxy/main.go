@@ -26,6 +26,9 @@ func main() {
 
 		go func(cid int) {
 			for {
+				// 模拟tcp粘包的场景
+				//1.客户端一段时间内发送包的速度太多，服务端没有全部处理完。于是数据就会积压起来，产生粘包。
+				//2.定义的读的buffer不够大，而数据包太大或者由于粘包产生，服务端不能一次全部读完，产生半包。
 				readbuf := make([]byte, 512)
 
 				dataLen, err := conn.Read(readbuf)
