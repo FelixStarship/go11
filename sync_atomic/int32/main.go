@@ -17,5 +17,5 @@ func main() {
 		}()
 	}
 	wg.Wait()
-	fmt.Println(n)
+	fmt.Println(atomic.LoadInt32(&n))
 }
