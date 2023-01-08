@@ -40,6 +40,9 @@
       <excludeFolder url="file://$MODULE_DIR$/tcpconn" />
       <excludeFolder url="file://$MODULE_DIR$/temporal" />
       <excludeFolder url="file://$MODULE_DIR$/type_assert" />
+      <excludeFolder url="file://$MODULE_DIR$/sync_atomic" />
+      <excludeFolder url="file://$MODULE_DIR$/sync_concurrent" />
+      <excludeFolder url="file://$MODULE_DIR$/tcp_proxy" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

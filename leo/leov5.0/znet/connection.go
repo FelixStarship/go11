@@ -60,7 +60,10 @@ func (c *Connection) StartReader() {
 			conn: c,
 			msg:  msg,
 		}
-		go c.MsgHandler.DoMsgHandler(req)
+
+		//go c.MsgHandler.DoMsgHandler(req)
+		// 启动工作池机制
+		c.MsgHandler.SendMsgToTaskQueue(req)
 	}
 }
 
