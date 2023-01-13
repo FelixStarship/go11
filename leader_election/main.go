@@ -55,7 +55,7 @@ func main() {
 	var leaseLockNamespace string
 	var id string
 
-	flag.StringVar(&kubeconfig, "kubeconfig", "/home/hxz/.kube/config", "absolute path to the kubeconfig file")
+	flag.StringVar(&kubeconfig, "kubeconfig", "", "absolute path to the kubeconfig file")
 	flag.StringVar(&id, "id", uuid.New().String(), "the holder identity name")
 	flag.StringVar(&leaseLockName, "lease-lock-name", "", "the lease lock resource name")
 	flag.StringVar(&leaseLockNamespace, "lease-lock-namespace", "", "the lease lock resource namespace")
