@@ -6,6 +6,10 @@
 ![](leader-election.drawio.png)
 
 
+![](Procedure-of-the-default-leader-election-algorithm.png)
+
+
+
 在运行 kube-controller-manager 时，是有一些参数提供给cm进行leader选举使用的，可以参考官方文档提供的 参数 来了解相关[参数](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/)。
 
 ```yaml
