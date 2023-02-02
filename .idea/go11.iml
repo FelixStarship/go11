@@ -33,7 +33,6 @@
       <excludeFolder url="file://$MODULE_DIR$/slice" />
       <excludeFolder url="file://$MODULE_DIR$/sql" />
       <excludeFolder url="file://$MODULE_DIR$/str" />
-      <excludeFolder url="file://$MODULE_DIR$/struct" />
       <excludeFolder url="file://$MODULE_DIR$/switch" />
       <excludeFolder url="file://$MODULE_DIR$/sync_mutex" />
       <excludeFolder url="file://$MODULE_DIR$/tcp_epoller" />
@@ -47,6 +46,7 @@
       <excludeFolder url="file://$MODULE_DIR$/jwt" />
       <excludeFolder url="file://$MODULE_DIR$/leo" />
       <excludeFolder url="file://$MODULE_DIR$/leader_election" />
+      <excludeFolder url="file://$MODULE_DIR$/decorator" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
