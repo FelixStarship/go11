@@ -40,5 +40,6 @@ func main() {
 	//w.Inter1
 	w.Inter1.fun1()
 	w.Inter1.fun2()
-	// 无法访问 Money 属性，可以增加方法来实现
+	// 断言访问
+	fmt.Println(w.Inter1.(Salary).Money)
 }
