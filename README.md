@@ -10,6 +10,9 @@
    - https://draveness.me/golang/docs/part2-foundation/ch05-keyword/golang-select/
    - go设计模式合集：https://github.com/shgopher/GOFamily/blob/master/go/2/codeSpecification.md
    - go语言知识汇总：https://github.com/shockerli/go-awesome
+   - 酷 壳 – CoolShell（陈皓）: https://coolshell.cn/articles/17929.html
+
+
 
 ## go中的error处理
 
