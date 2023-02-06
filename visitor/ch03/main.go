@@ -45,7 +45,9 @@ func XmlVisitor(shape Shape) {
 }
 
 func main() {
-
+	/*
+		Visitor设计模式、数据结构和计算分离
+	*/
 	shapes := []Shape{&Circle{10}, &Rectangle{100, 200}}
 
 	for _, s := range shapes {
