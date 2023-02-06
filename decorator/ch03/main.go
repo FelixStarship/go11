@@ -45,6 +45,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
+	// pipeline模式
 	http.HandleFunc("/v1/hello", Handler(hello, WithServerHeader, WithBasicAuth))
 
 	err := http.ListenAndServe(":8080", nil)
