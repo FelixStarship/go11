@@ -47,6 +47,7 @@
       <excludeFolder url="file://$MODULE_DIR$/jwt" />
       <excludeFolder url="file://$MODULE_DIR$/leader_election" />
       <excludeFolder url="file://$MODULE_DIR$/leo/leov5.0" />
+      <excludeFolder url="file://$MODULE_DIR$/leo/leov6.0" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
