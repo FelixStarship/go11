@@ -3,8 +3,9 @@ package znet
 import (
 	"errors"
 	"fmt"
-	"github.com/FelixStarship/go11/leo/leov7.0/ziface"
 	"sync"
+
+	"github.com/FelixStarship/go11/leo/leov7.0/ziface"
 )
 
 type ConnManger struct {

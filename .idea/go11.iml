@@ -48,6 +48,8 @@
       <excludeFolder url="file://$MODULE_DIR$/leader_election" />
       <excludeFolder url="file://$MODULE_DIR$/leo/leov5.0" />
       <excludeFolder url="file://$MODULE_DIR$/leo/leov6.0" />
+      <excludeFolder url="file://$MODULE_DIR$/decorator" />
+      <excludeFolder url="file://$MODULE_DIR$/visitor" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

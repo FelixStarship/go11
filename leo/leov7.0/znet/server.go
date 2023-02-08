@@ -8,12 +8,13 @@ import (
 )
 
 type Server struct {
-	Name        string
-	IPVersion   string
-	IP          string
-	Port        int
-	msgHandler  ziface.IMsgHandle
-	ConnMgr     ziface.IConnManger
+	Name       string
+	IPVersion  string
+	IP         string
+	Port       int
+	msgHandler ziface.IMsgHandle
+	ConnMgr    ziface.IConnManger
+	// 函数一等公民
 	OnConnStart func(ziface.IConnection)
 	OnConnStop  func(ziface.IConnection)
 }

@@ -25,7 +25,7 @@ func NewConnection(server ziface.IServer, conn *net.TCPConn, connID uint32, msgH
 		ConnID:       connID,
 		ExitBuffChan: make(chan bool, 1),
 		MsgHandler:   msgHandler,
-		msgChan:      make(chan []byte),
+		msgChan:      make(chan []byte, 1),
 		TcpServer:    server,
 	}
 	c.TcpServer.GetConnMgr().Add(c)
@@ -41,21 +41,21 @@ func (c *Connection) StartReader() {
 		dp := NewDataPack()
 		headData := make([]byte, dp.GetHeadLen())
 		if _, err := io.ReadFull(c.GetTCPConnection(), headData); err != nil {
-			c.ExitBuffChan <- true
-			continue
+			fmt.Println("read msg head error", err)
+			return
 		}
 
 		msg, err := dp.UnPack(headData)
 		if err != nil {
-			c.ExitBuffChan <- true
-			continue
+			fmt.Println("unpack error", err)
+			return
 		}
 
 		data := make([]byte, msg.GetDataLen())
 		if msg.GetDataLen() > 0 {
 			if _, err := io.ReadFull(c.GetTCPConnection(), data); err != nil {
-				c.ExitBuffChan <- true
-				continue
+				fmt.Println("read msg data error", err)
+				return
 			}
 		}
 		msg.SetData(data)
@@ -67,7 +67,7 @@ func (c *Connection) StartReader() {
 
 		//go c.MsgHandler.DoMsgHandler(req)
 		// 启动工作池机制
-		c.MsgHandler.SendMsgToTaskQueue(req)
+		go c.MsgHandler.SendMsgToTaskQueue(req)
 	}
 }
 
@@ -116,13 +116,15 @@ func (c *Connection) Stop() {
 	if err != nil {
 		return
 	}
+
 	c.ExitBuffChan <- true
 	//==========================
-	//
 
 	c.TcpServer.CallOnConnStop(c)
 	//==========================
 	c.TcpServer.GetConnMgr().Remove(c)
+
+	close(c.msgChan)
 }
 
 func (c *Connection) GetTCPConnection() *net.TCPConn {
@@ -148,5 +150,6 @@ func (c *Connection) SendMsg(msgId uint32, data []byte) error {
 	}
 	//数据写回客户端
 	c.msgChan <- msg
+
 	return err
 }

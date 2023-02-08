@@ -51,8 +51,8 @@ func (s *Server) Start() {
 				conn.Close()
 				continue
 			}
-			go NewConnection(s, conn, cid, s.msgHandler).Start()
 			cid++
+			go NewConnection(s, conn, cid, s.msgHandler).Start()
 		}
 	}()
 }

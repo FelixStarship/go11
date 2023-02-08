@@ -41,21 +41,18 @@ func (c *Connection) StartReader() {
 		dp := NewDataPack()
 		headData := make([]byte, dp.GetHeadLen())
 		if _, err := io.ReadFull(c.GetTCPConnection(), headData); err != nil {
-			c.ExitBuffChan <- true
-			continue
+			return
 		}
 
 		msg, err := dp.UnPack(headData)
 		if err != nil {
-			c.ExitBuffChan <- true
-			continue
+			return
 		}
 
 		data := make([]byte, msg.GetDataLen())
 		if msg.GetDataLen() > 0 {
 			if _, err := io.ReadFull(c.GetTCPConnection(), data); err != nil {
-				c.ExitBuffChan <- true
-				continue
+				return
 			}
 		}
 		msg.SetData(data)
