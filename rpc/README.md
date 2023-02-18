@@ -43,7 +43,7 @@ gRPC(gRPC Remote Procedure Calls)是Google发起的一个开源远程过程调�
 # Twirp[是一个基于 Google Protobuf 的 RPC 框架](https://twitchtv.github.io/twirp/docs/intro.html)
 Twirp通过在.proto文件中定义服务，然后自动生产服务器和客户端的代码。让我们可以将更多的精力放在业务逻辑上。咦？这不就是 gRPC 吗？不同的是，gRPC 自己实现了一套 HTTP 服务器和网络传输层，twirp 使用标准库net/http。另外 gRPC 只支持 HTTP/2 协议，twirp 还可以运行在 HTTP 1.1 之上。同时 twirp 还可以使用 JSON 格式交互。当然并不是说 twirp 比 gRPC 好，只是多了解一种框架也就多了一个选择。
 
-![](kratos和twirp.png)
+![kratos和twirp.png](kratos和twirp.png)
 
 # kratos框架项目结构：
 ```bash
