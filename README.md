@@ -12,7 +12,8 @@
    - go语言知识汇总：https://github.com/shockerli/go-awesome
    - 酷 壳 – CoolShell（陈皓）: https://coolshell.cn/articles/17929.html
    - go项目的目录结构组织: https://github.com/golang-standards/project-layout
-
+   - learngo：https://github.com/inancgumus/learngo
+   - LearnGolang：https://github.com/LearnGolang/LearnGolang
 
 ## go中的error处理
 
